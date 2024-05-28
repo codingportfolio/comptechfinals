@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA_Compatable" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+
+    <!-- CSS -->
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            opacity: 0;
+            transition: opacity 3s;
+        }
+
+        .hero {
+            width: 100%;
+            height: 15vh;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: -11px 20px 0px 0px;
+            padding: 0;
+            position: fixed;
+            background-color: #ffffff;
+            z-index:1000;
+        }
+
+            .nav .link ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8rem;
+                list-style: none;
+                padding: 40px 150px
+            }
+
+                .nav .link ul a {
+                    text-decoration: none;
+                    color: #2a2a2a;
+                    font-weight: 600;
+                    transition: all 20ms ease-in-out;
+                }
+
+        /* auto fits in 768px screens */
+        @media(max-width: 768px) {
+            .nav {
+                flex-direction: column;
+            }
+
+                .nav.link ul {
+                    flex-direction: column;
+                }
+        }
+
+        .logo {
+            margin-left: 150px;
+        }
+
+        ul a .active {
+            color: #ff0000;
+        }
+
+        .nav .link ul a:hover {
+            color: #ff0000;
+        }
+
+        a {
+            color: #2a2a2a;
+            text-decoration: none;
+            text-decoration-color: #ffffff;
+        }
+
+            a:hover {
+                color: #ff0000;
+                text-underline-offset: 1rem;
+                text-decoration-color: rgb(181, 181, 181);
+            }
+
+        /* Dropdown Menu */
+        .nav .link ul li {
+            position: relative;
+        }
+
+            .nav .link ul li .dropdown {
+                position: absolute;
+                padding: 12px 10px 8px 100px;
+                top: 100%;
+                left: 0px;
+                width: 0px;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                display: none;
+                z-index: 1000;
+            }
+
+            .nav .link ul li:hover .dropdown {
+                display: block;
+            }
+
+            .nav .link ul li .dropdown li {
+                padding: 3px;
+                right: 100px;
+            }
+
+                .nav .link ul li .dropdown li:hover {
+                    background-color: #f5f5f5;
+                }
+
+
+        /* Life Experience */
+        .slider {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            margin-top: -50px;
+        }
+
+            .slider .list .item {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                inset: 0 0 0 0;
+            }
+
+                .slider .list .item img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .slider .list .item .content {
+                    position: absolute;
+                    top: 35%;
+                    width: 1300px;
+                    max-width: 80%;
+                    left: 45%;
+                    transform: translateX(-50%);
+                    padding-right: 30%;
+                    box-sizing: border-box;
+                    color: #fff;
+                    text-shadow: 0 5px 10px #0004;
+                }
+
+                    .slider .list .item .content .title,
+                    .slider .list .item .content .type {
+                        font-size: 5em;
+                        font-weight: bold;
+                        line-height: 1.3em;
+                    }
+
+                    .slider .list .item .content .type {
+                        color: #000000;
+                    }
+
+                    .slider .list .item .content .description {
+                        font-size: 14px;
+                    }
+
+                    .slider .list .item .content .button {
+                        margin-top: 20px;
+                    }
+
+                        .slider .list .item .content .button button {
+                            border: none;
+                            background-color: #eee;
+                            padding: 7px 15px;
+                            font-family: "Poppins", sans-serif;
+                            font-weight: 500;
+                            cursor: pointer;
+                            letter-spacing: 2px;
+                            transition: 0.4s;
+                        }
+
+                            .slider .list .item .content .button button:hover {
+                                background-color: #d95b43;
+                                color: #eee;
+                            }
+
+                            .slider .list .item .button button:hover {
+                                letter-spacing: 3px;
+                            }
+
+                            .slider .list .item .button button:nth-child(2) {
+                                background-color: transparent;
+                                border: 1px solid #fff;
+                                color: #eee;
+                            }
+
+        /* THUMBNAIL FOR NEXT SLIDE*/
+        .thumbnail {
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            width: max-content;
+            z-index: 100;
+        }
+
+            .thumbnail .item {
+                width: 120px;
+                height: 150px;
+                flex-shrink: 0;
+                position: relative;
+            }
+
+                .thumbnail .item img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 20px;
+                    box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+                }
+
+                /* Next & Prev Arrows */
+                .nextPrevArrows{
+                    position: absolute;
+                    top: 85%;
+                    right: 55%;
+                    z-index: 100;
+                    width: 300px;
+                    max-width: 30%;
+                    display: flex;
+                    gap: 20px;
+                    align-items: center;
+                }
+
+                .nextPrevArrows button{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: #212121;
+                    border: none;
+                    color: #fff;
+                    font-family: monospace;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: 0.5s;
+                }
+
+                .nextPrevArrows button:hover{
+                    background-color: #d95b43;
+                    color: #000;
+                }
+
+                /* Slides Animation */
+                .slider .list .item:nth-child(1){
+                    z-index: 1;
+                }
+
+                .slider .list .item:nth-child(1) .content .title,
+                .slider .list .item:nth-child(1) .content .type,
+                .slider .list .item:nth-child(1) .content .description,
+                .slider .list .item:nth-child(1) .content .button{
+                    transform: translateY(50px);
+                    filter: blur(20px);
+                    opacity: 0;
+                    animation: showContent 0.5s 1s linear 1 forwards;
+                }
+
+                @keyframes showContent{
+                    to {
+                        transform: translateY(0px);
+                        filter: blur(0px);
+                        opacity: 1;
+                    }
+                }
+
+                .slider .list .item:nth-child(1) .content .title{
+                    animation-delay: 0.4s;
+                }
+                .slider .list .item:nth-child(1) .content .type{
+                    animation-delay: 0.6s;
+                }
+                .slider .list .item:nth-child(1) .content .description{
+                    animation-delay: 0.8s;
+                }
+                .slider .list .item:nth-child(1) .content .button{
+                    animation-delay: 1s;
+                }
+
+                /* Animation for next button click */
+                .slider.next .list .item:nth-child(1) img{
+                    width: 150px;
+                    height: 220px;
+                    position: absolute;
+                    bottom: 50px;
+                    left: 50%;
+                    border-radius: 30px;
+                    animation: showImage 0.3s linear 1 forwards;
+                }
+
+                @keyframes showImage{
+                    to{
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 0;
+                    }
+                }
+
+                .slider.next .thumbnail .item:nth-child(1) {
+                     overflow: hidden;
+                     animation: showThumbnail 0.5s linear 1 forwards;
+                }
+
+                .slider.prev .list .item img{
+                    z-index: 100;
+                }
+
+                @keyframes showThumbnail{
+                    from{
+                        width: 0;
+                        opacity: 0;
+                    }
+                }
+
+                .slider.next .thumbnail{
+                    animation: effectNext 0.5s linear 1 forwards;
+                }
+
+                @keyframes effectNext{
+                    from{
+                        transform: translateX(150px);
+                    }
+                }
+
+                /* Animation for prev button click */
+                .slider.prev .list .item:nth-child(2){
+                    z-index: 2;
+                }
+
+                .slider.prev .list .item:nth-child(2){
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    animation: outframe 0.4s linear 1 forwards;
+                }
+
+                @keyframes outframe{
+                    to {
+                        width: 150px;
+                        height: 220px;
+                        bottom: 50px;
+                        left: 50%;
+                        border-radius: 20px;
+                        filter: blur(100px);
+                    }
+                }
+
+                .slider.prev .thumbnail .item:nth-child(1){
+                    overflow: hidden;
+                    opacity: 0;
+                    animation: showThumbnail .5s linear 1 forwards;
+                }
+
+                .slider .prev .item:nth-child(1) .content .title,
+                .slider .prev .item:nth-child(1) .content .type,
+                .slider .prev .item:nth-child(1) .content .description,
+                .slider .prev .item:nth-child(1) .content .button{
+                    animation: contentOut 0.5s 1s linear 1 forwards;
+                }
+
+                @keyframes contentOut{
+                    to{
+                        transform: translateY(-150px);
+                        filter: blur(20px);
+                        opacity: 0;
+                    }
+                }
+
+                @media screen and (max-width: 678px) {
+                    .slider .list .item .content {
+                        padding-right: 0;
+                    }
+
+                    .slider .list .item .content .title {
+                        font-size: 50px;
+                    }
+                }
+
+        /* ABOUT & PICTURE */
+        #about {
+            padding: 80px 0;
+            color: #ababab;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .about-col-1 {
+            flex-basis: 35%;
+        }
+
+            .about-col-1 img {
+                width: 70%;
+                border-radius: 80px;
+                padding: 10%;
+            }
+
+        .about-col-2 {
+            flex-basis: 60%;
+            color: #2a2a2a;
+        }
+
+        .sub-title {
+            font-size: 60px;
+            font-weight: 600;
+            color: #2a2a2a;
+        }
+
+        /* TAB TITLES (Skills - Education) */
+        .tab-titles {
+            display: flex;
+            margin: 20px 0 40px;
+        }
+
+        .tab-links {
+            margin-right: 50px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+        }
+
+            .tab-links::after {
+                content: '';
+                width: 0;
+                height: 3px;
+                background: #ff004f;
+                position: absolute;
+                left: 0;
+                bottom: -8px;
+                transition: 0.5s;
+            }
+
+            .tab-links.active-link::after {
+                width: 50%;
+            }
+
+        /* TAB DESCRIPTIONS */
+        .tab-contents ul li {
+            list-style: none;
+            margin: 10px 0;
+        }
+
+            .tab-contents ul li span {
+                color: #ff004f;
+                font-size: 14px;
+            }
+
+        .tab-contents {
+            display: none;
+        }
+
+            .tab-contents.active-tab {
+                display: block;
+            }
+
+        /* PROJECTS SECTION */
+
+        #projects {
+            position: relative;
+        }
+
+        .titleProject {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        .color-container {
+            border-color: #a3a3a3;
+            background: #353535;
+        }
+
+        .project-img {
+            border-radius: 2rem;
+            width: 60%;
+            height: 400px;
+        }
+
+        .project-title {
+            margin: 1rem;
+            color: #000000;
+        }
+
+        .project-btn {
+            color: #000000;
+            border-color: #a3a3a3;
+        }
+
+        .project-details-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .details-container {
+            padding: 1.5rem;
+            flex: 1;
+            background: #ffffff;
+            border-radius: 2rem;
+            border: #353535 0.1rem solid;
+            border-color: #a3a3a3;
+            text-align: center;
+        }
+
+        .project-containers {
+            gap: 5rem;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            margin-left: 10rem;
+            margin-right: 10rem;
+            display: flex;
+        }
+
+        .description-container {
+            display: flex;
+            text-align: initial;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 2.5rem;
+            justify-content: space-around;
+        }
+
+        .project-sub-title {
+            color: #555555;
+            font-weight: 600;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            font-weight: 600;
+            transition: all 300ms ease;
+            padding: 1rem;
+            width: 8rem;
+            border-radius: 2rem;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-color-2 {
+            border: #353535 0.1rem solid;
+            background: none;
+        }
+
+            .btn-color-2:hover {
+                cursor: pointer;
+                background: #353535;
+                color: #ffffff;
+                border: #ffffff 0.1rem solid;
+            }
+
+        /* CONTACT ME */
+        .contactTitle {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        .section__text__p1 {
+            text-align: center;
+        }
+
+        #contact {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            height: 70vh;
+        }
+
+        .contact-info-upper-container {
+            display: flex;
+            justify-content: center;
+            border-radius: 2rem;
+            border: #353535 0.1rem solid;
+            border-color: #a3a3a3;
+            background: #fafafa;
+            margin: 2rem auto;
+            padding: 0.5rem;
+        }
+
+        .contact-info-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem;
+        }
+
+            .contact-info-container p {
+                font-size: larger;
+            }
+
+        .contact-icon {
+            cursor: default;
+            height: 2.5rem;
+        }
+
+        .email-icon {
+            height: 3rem;
+        }
+
+        /* FOOTER SECTION */
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 17vh;
+            gap: 2rem;
+            list-style: none;
+            font-size: 20px;
+        }
+
+        footer {
+            height: 26vh;
+            margin: 0 1rem;
+        }
+
+            footer p {
+                text-align: center;
+            }
+
+
+
+    </style>
+
+</head>
+
+<!-- HTML -->
+
+<!--Navagation Bar-->
+<body onload="document.body.style.opacity='1'">
+    <div class="hero">
+        <div class="nav">
+            <div class="logo">
+                <h2>Cebu Technological University</h2>
+            </div>
+            <div class="link">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li>
+                        <a href="About.html">About</a>
+                        <ul class="dropdown">
+                            <li><a href="#about">Description</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="./images/Resume.pdf">Resume</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="FAQs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Life experience -->
+
+    <!-- Page Slider -->
+
+    <div class="slider">
+
+        <div class="list">
+
+            <div class="item">
+                <img src="./images/Slider-1(2).png" alt="">
+
+                <div class="content">
+                    <div class="title">"With you,<br> I am home."</div>
+                    <div class="type">- KG</div>
+                    <div class="description">
+
+                    </div>
+                    <div class="button">
+                        <button>READ MORE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="./images/Slider-2(2).jpg" alt="">
+
+                <div class="content">
+                    <div class="title" style="font-size:3em;">"Behind every young child who believes in themselves is a parent who believed first."</div>
+                    <div class="type" style="font-size:3em;">- KG</div>
+                    <div class="description">
+
+                    </div>
+                    <div class="button">
+                        <button>READ MORE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="./images/Slider-3(2).jpg" alt="">
+
+                <div class="content">
+                    <div class="title" style="font-size:2em;">"Have I not commanded you? Be strong and courageous. Do not be frightened, and do not be dismayed, for the Lord your God is with you wherever you go."</div>
+                    <div class="type" style="font-size:2em;">- Joshua 1:9</div>
+                    <div class="description">
+
+                    </div>
+                    <div class="button">
+                        <button>READ MORE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="./images/Slider-4(2).jpg" alt="">
+
+                <div class="content">
+                    <div class="title">Family.</div>
+                    <div class="type">- Vin Diesel</div>
+                    <div class="description">
+
+                    </div>
+                    <div class="button">
+                        <button>READ MORE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="./images/Slider-5(2).jpg" alt="">
+
+                <div class="content">
+                    <div class="title" style="font-size:3em;">"Blood is thicker than water. Real brothers have your back, no matter what."</div>
+                    <div class="type" style="font-size:3em;">- Andrew Tate</div>
+                    <div class="description">
+
+                    </div>
+                    <div class="button">
+                        <button>READ MORE</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Page Slider Thumbnails -->
+
+        <div class="thumbnail">
+            <div class="item">
+                <img src="./images/Slider-1.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="./images/Slider-2.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="./images/Slider-3.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="./images/Slider-4.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="./images/Slider-5.jpg" alt="">
+            </div>
+
+        </div>
+
+        <div class="nextPrevArrows">
+            <button class="prev"> < </button>
+            <button class="next"> > </button>
+        </div>
+
+    </div>
+
+    <!-- //Page Slider -->
+    <!-- ABOUT ME -->
+    <div id="about">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="./images/WebsiteLogo.jpg">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>I am Kyle Gregory M. Ibo, a Cebu Technological University graduate. I'm passionate about creating user-friendly and visually appealing applications.
+                  When I'm not coding, I enjoy eating and sleeping. </p>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <!-- Skills -->
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
+                        <li><span>Web Development</span><br>Web App Development</li>
+                        <li><span>Software Development</span><br>Full-Stack Development</li>
+                    </ul>
+                </div>
+                <!-- Experience -->
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>2+ Months</span><br>Front-End Development</li>
+                        <li><span>1+ Month</span><br>Web App Development</li>
+                        <li><span>2+ Weeks</span><br>Full-stack Development</li>
+                    </ul>
+                </div>
+                <!-- Education -->
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>2024 - 2027</span><br>BIT Major in CompTech - Cebu Techonological University - Ginatilan Campus</li>
+                        <li><span>2017 - 2023</span><br>STEM - Holy Trinity College, Inc.</li>
+                        <li><span>2011 - 2016</span><br>Kabatuan Elementary School</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Projects -->
+    <section id="projects">
+        <p class="section__text__p1">Browse My Recent</p>
+        <h1 class="titleProject">Projects</h1>
+        <div class="project-details-container">
+            <div class="project-containers">
+                <div class="details-container color-container">
+                    <div class="description-container">
+                        <img src="./images/Project1.jpg"
+                             alt="Project 1"
+                             class="project-img" />
+                    </div>
+                    <h2 class="project-sub-title project-title">Straight-Through Cable</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 project-btn"
+                                onclick="location.href='https://youtu.be/t8k04QaOndc'">
+                            View
+                        </button>
+                    </div>
+                </div>
+                <div class="details-container color-container">
+                    <div class="description-container">
+                        <img src="./images/Project2.jpg"
+                             alt="Project 2"
+                             class="project-img" />
+                    </div>
+                    <h2 class="project-sub-title project-title">Crossover Cable</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 project-btn"
+                                onclick="location.href='https://youtu.be/UBFvbS5773o?si=80xCI__Oy4gWKWA4'">
+                            View
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FOOTER -->
+    <section id="contact">
+        <p class="section__text__p1">Get in Touch</p>
+        <h1 class="contactTitle">Contact Me</h1>
+        <div class="contact-info-upper-container">
+            <div class="contact-info-container">
+                <img src="./images/emailLogo.png"
+                     alt="Email icon"
+                     class="icon contact-icon email-icon" />
+                <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=gregoryibo7@gmail.com">gregoryibo7@gmail.com</a></p>
+            </div>
+            <div class="contact-info-container">
+                <img src="./images/linkedinLogo.png"
+                     alt="LinkedIn icon"
+                     class="icon contact-icon" />
+                <p><a href="https://www.linkedin.com">LinkedIn</a></p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="./images/Resume.pdf">Resume</a></li>
+                    <li><a href="FAQs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p>Copyright &#169; 2024 Kyle Gregory M. Ibo. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVA SCRIPT -->
+
+    <script>
+
+        // Slides Animation
+
+        let nextBtn = document.querySelector('.next')
+        let prevBtn = document.querySelector('.prev')
+
+        let slider = document.querySelector('.slider')
+        let sliderList = slider.querySelector('.slider .list')
+        let thumbnail = document.querySelector('.slider .thumbnail')
+        let thumbnailItems = thumbnail.querySelectorAll('.item')
+
+        thumbnail.appendChild(thumbnailItems[0])
+
+        // Function for next button
+        nextBtn.onclick = function () {
+            moveSlider('next')
+        }
+
+
+        // Function for prev button
+        prevBtn.onclick = function () {
+            moveSlider('prev')
+        }
+
+
+        function moveSlider(direction) {
+            let sliderItems = sliderList.querySelectorAll('.item')
+            let thumbnailItems = document.querySelectorAll('.thumbnail .item')
+
+            if (direction === 'next') {
+                sliderList.appendChild(sliderItems[0])
+                thumbnail.appendChild(thumbnailItems[0])
+                slider.classList.add('next')
+            } else {
+                sliderList.prepend(sliderItems[sliderItems.length - 1])
+                thumbnail.prepend(thumbnailItems[thumbnailItems.length - 1])
+                slider.classList.add('prev')
+            }
+
+
+            slider.addEventListener('animationend', function () {
+                if (direction === 'next') {
+                    slider.classList.remove('next')
+                } else {
+                    slider.classList.remove('prev')
+                }
+            }, { once: true })
+        }
+
+        // About Me Description Animation
+
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+
+    </script>
+
+</body>
+
+</html>

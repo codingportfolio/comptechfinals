@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA_Compatable" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <!-- CSS -->
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            opacity: 0;
+            transition: opacity 3s;
+        }
+
+        .hero {
+            width: 100%;
+            height: 15vh;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: -11px 20px 0px 0px;
+            padding: 0;
+            position: fixed;
+            background-color: #ffffff;
+            z-index: 1000;
+        }
+
+            .nav .link ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8rem;
+                list-style: none;
+                padding: 40px 150px
+            }
+
+                .nav .link ul a {
+                    text-decoration: none;
+                    color: #2a2a2a;
+                    font-weight: 600;
+                    transition: all 20ms ease-in-out;
+                }
+
+        /* auto fits in 768px screens */
+        @media(max-width: 768px) {
+            .nav {
+                flex-direction: column;
+            }
+
+                .nav.link ul {
+                    flex-direction: column;
+                }
+        }
+
+        .logo {
+            margin-left: 150px;
+        }
+
+        ul a .active {
+            color: #ff0000;
+        }
+
+        .nav .link ul a:hover {
+            color: #ff0000;
+        }
+
+        a {
+            color: #2a2a2a;
+            text-decoration: none;
+            text-decoration-color: #ffffff;
+        }
+
+            a:hover {
+                color: #ff0000;
+                text-underline-offset: 1rem;
+                text-decoration-color: rgb(181, 181, 181);
+            }
+
+        /* Dropdown Menu */
+        .nav .link ul li {
+            position: relative;
+        }
+
+            .nav .link ul li .dropdown {
+                position: absolute;
+                padding: 12px 10px 8px 100px;
+                top: 100%;
+                left: 0px;
+                width: 0px;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                display: none;
+                z-index: 1000;
+            }
+
+            .nav .link ul li:hover .dropdown {
+                display: block;
+            }
+
+            .nav .link ul li .dropdown li {
+                padding: 3px;
+                right: 100px;
+            }
+
+                .nav .link ul li .dropdown li:hover {
+                    background-color: #f5f5f5;
+                }  
+
+        /* BG */
+        .slider {
+            width: 100vw;
+            height: 140vh;
+            overflow: hidden;
+            position: relative;
+            margin-top: -300px;
+        }
+
+            .slider .list .item {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                inset: 0 0 0 0;
+            }
+
+                .slider .list .item img {
+                    width: 100%;
+                    height: 80%;
+                    object-fit: cover;
+                }
+
+                .slider .list .item .content {
+                    position: absolute;
+                    top: 35%;
+                    width: 1300px;
+                    max-width: 80%;
+                    left: 45%;
+                    transform: translateX(-50%);
+                    padding-right: 30%;
+                    box-sizing: border-box;
+                    color: #fff;
+                    text-shadow: 0 5px 10px #0004;
+                }
+
+                    .slider .list .item .content .title {
+                        font-size: 3em;
+                        font-weight: bold;
+                        line-height: 1.5em;
+                    }
+
+                    .slider .list .item .content .type {
+                        color: #ffffff;
+                        font-size: 2em;
+                        font-weight: bold;
+                        line-height: 1.5em;
+                    }
+
+                    .slider .list .item .content .description {
+                        font-size: 15px;
+                    }
+        
+        /* FAQs */
+        .faq-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 45px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .faq-question:last-child{
+            border-bottom: none;
+        }
+
+            .faq-question:hover {
+                background-color: #d95b43;
+            }
+
+        .faq-answer {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+            display: none;
+        }
+
+        .faq-item.show .faq-answer {
+            display: block;
+        }
+
+        .faq-question svg {
+            transition: transform 0.2s;
+        }
+
+        .faq-question.rotate svg {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        .contactfooter {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+            .contact-info a {
+                text-decoration: none;
+                color: #337ab7;
+            }
+
+                .contact-info a:hover {
+                    color: #23527c;
+                }
+
+        /* CONTACT LOGOS SECTION */
+        .parent {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .child {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease-in-out;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+            .child:hover {
+                background-color: white;
+                background-position: -100px 100px, -100px 100px;
+                transform: rotate3d(0.5, 1, 0, 30deg);
+                transform: perspective(180px) rotateX(60deg) translateY(2px);
+                box-shadow: 0px 10px 10px rgb(1, 49, 182);
+            }
+
+        button {
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+        }
+
+        .button:hover {
+            width: inherit;
+            height: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg) translateY(2px);
+            border-radius: 50%;
+        }
+
+    </style>
+
+</head>
+
+<!--HTML-->
+<!--Navagation Bar-->
+
+<body onload="document.body.style.opacity='1'">
+    <div class="hero">
+        <div class="nav">
+            <div class="logo">
+                <h2>Cebu Technological University</h2>
+            </div>
+            <div class="link">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li>
+                        <a href="About.html">About</a>
+                        <ul class="dropdown">
+                            <li><a href="About.html#about">Description</a></li>
+                            <li><a href="About.html#projects">Projects</a></li>
+                            <li><a href="./images/Resume.pdf">Resume</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="About.html#contact">Contact</a></li>
+                    <li><a href="FAQs.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider">
+
+        <div class="list">
+
+            <div class="item">
+                <img src="./images/Faq.jpg" alt="">
+
+                <div class="content">
+                    <div class="title">FAQs</div>
+                    <div class="type">Have questions? You might find the answer to your question here.</div>
+                    <div class="description">
+                        If you can't find what you're looking for, feel free to reach out!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <button class="faq-question">Are you single? <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="#000000" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg></button>
+            <div class="faq-answer">
+                <p>I am definitely not single! I've been happily engaged for 19 months now. 
+                Building a life with someone special is incredibly rewarding, and I'm excited to see what the future holds for us.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What inspired you to start this blog? <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="#000000" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg></button>
+            <div class="faq-answer">
+                <p>Curiosity is a big driver for me! I find the world endlessly fascinating, and I love learning new things. 
+                This blog allows me to explore different topics, delve deeper into my interests, and share what I discover with others. 
+                There's something really fulfilling about connecting with people through shared knowledge and experiences.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What are your future goals for this website? <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="#000000" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg></button>
+            <div class="faq-answer">
+                <p>I have big dreams for this website! Right now, I'm focused on adding more details and articles that cover a 
+                wider range of subjects. I want to create a space that's not only informative but also engaging and thought-provoking.
+                As I continue to learn and grow, I want this website to reflect that journey. 
+                Ultimately, I hope to build a community of curious minds who can learn and share ideas together.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"> What coding languages are you currently learning? <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="#000000" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg></button>
+            <div class="faq-answer">
+                <p>I'm currently diving into the world of HTML, CSS, and JavaScript. These are the fundamental building blocks of the web, 
+                and I'm excited to explore their potential.  My goal is to gain a strong foundation in these languages so 
+                I can eventually start creating and customizing my own web experiences.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Do you have plans to shift BSIT? <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="#000000" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg></button>
+            <div class="faq-answer">
+                <p>Absolutely not! I've found an environment where I feel challenged, stimulated, and fulfilled. 
+                My current field allows me to explore my interests and utilize my skills in a way that brings me a lot of satisfaction. 
+                Shifting to a different program would mean starting from scratch, and I
+                wouldn't want to risk losing the peace of mind and progress I've made here.</p>
+            </div>
+        </div>
+        <!-- Add more FAQ items here -->
+    </div>
+
+    <!--FOOTER-->
+    <!--CONTACT LOGOS SECTION (Twitter - Facebook)-->
+     <div class="footer">
+        <div class="child child-1">
+            <a href="https://twitter.com/_kylegregoryy">
+                <button class="button btn-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="#000000"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+                </button>
+            </a>
+        </div>
+        <div class="child child-2">
+            <a href="https://www.instagram.com/_kylegregoryy?igsh=OWMxMzU3azVoNGEx">
+                <button class="button btn-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" fill="#ff00ff"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>
+                </button>
+            </a>
+        </div>
+        <div class="child child-3">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gregoryibo7@gmail.com">
+                <button class="button btn-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 488 512" fill="#db4a39"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                </button>
+            </a>
+        </div>
+        <div class="child child-4">
+            <a href="https://www.facebook.com/3incheslong2incheswide?mibextid=ZbWKwL">
+                <button class="button btn-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" fill="#4267B2"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                </button>
+            </a>
+        </div>
+    </div>
+    
+    <div class="contactfooter">
+        <div class="contact-info">
+            <p>Don't see your question here? Send me a message!</p>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gregoryibo7@gmail.com">gregoryibo7@gmail.com</a>
+            <p>Message me:</p>
+            <p>Monday - Friday: 9am - 5pm EST</p>
+            <p>Saturday - Sunday: Closed</p>
+            <p>Copyright &#169; 2024 Kyle Gregory M. Ibo. All Rights Reserved.</p>
+        </div>
+    </div>
+    
+   
+
+    <!--JAVA SCRIPT-->
+    <script>
+
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach((faqItem) => {
+            faqItem.addEventListener('click', () => {
+                faqItem.classList.toggle('show');
+                faqItem.querySelector('.faq-question').classList.toggle('rotate');
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
